@@ -1,0 +1,20 @@
+package com.wisedu.cloud.smp.api.params;
+
+import com.wisedu.cloud.smp.dal.sp.model.extend.QueryStatusCondition;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/5/11.
+ */
+public class TaskStatusRequest {
+    private List<QueryStatusCondition> queryConditions;
+
+    public List<QueryStatusCondition> getQueryConditions() {
+        return queryConditions;
+    }
+
+    public void setQueryConditions(List<QueryStatusCondition> queryConditions) {
+        this.queryConditions = queryConditions;
+    }
+}

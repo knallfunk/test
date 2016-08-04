@@ -1,0 +1,25 @@
+package com.wisedu.cloud.smp.api.params;
+
+/**
+ * Created by huangxuecan on 2016/2/26.
+ */
+public class SchoolEsbInfoRequest {
+    private String schoolId;
+    private String appId;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
+}

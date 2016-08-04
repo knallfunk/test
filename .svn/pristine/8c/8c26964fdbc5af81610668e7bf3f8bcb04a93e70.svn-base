@@ -1,0 +1,69 @@
+package com.wisedu.cloud.smp.dal.sp.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.dao.UserRoleDao;
+import com.wisedu.cloud.smp.dal.sp.mapper.UserMapper;
+import com.wisedu.cloud.smp.dal.sp.mapper.UserRoleMapper;
+import com.wisedu.cloud.smp.dal.sp.model.User;
+import com.wisedu.cloud.smp.dal.sp.model.UserExample;
+import com.wisedu.cloud.smp.dal.sp.model.UserRole;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/5.
+ */
+@Repository("userRoleDao")
+public class UserRoleDaoImpl implements UserRoleDao {
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
+    @Override
+    public void insertUser(User user) throws DaoException {
+        try {
+            Date currentTime = new Date();
+            user.setCreateTime(currentTime);
+            user.setUpdateTime(currentTime);
+            userMapper.insertSelective(user);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public void insertUserRole(UserRole userRole) throws DaoException {
+        try {
+            Date currentTime = new Date();
+            userRole.setCreateTime(currentTime);
+            userRole.setUpdateTime(currentTime);
+            userRoleMapper.insertSelective(userRole);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+
+    }
+
+    @Override
+    public User getUserByUserName(String userName) throws DaoException {
+        if(null == userName || "".equals(userName)){
+            return new User();
+        }
+        try {
+            UserExample userExample = new UserExample();
+            userExample.createCriteria().andUserNameEqualTo(userName).andIsDelEqualTo(false);
+            List<User> users = userMapper.selectByExample(userExample);
+            if(null != users && !users.isEmpty()){
+                return users.get(0);
+            }
+            return new User();
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+}

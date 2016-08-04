@@ -1,0 +1,25 @@
+package com.wisedu.cloud.smp.web.params;
+
+/**
+ * Created by luqiang on 2016/6/22.
+ */
+public class LicenseGenerateRequest {
+    private String          schoolId;
+    private Integer         productType;
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public Integer getProductType() {
+        return productType;
+    }
+
+    public void setProductType(Integer productType) {
+        this.productType = productType;
+    }
+}

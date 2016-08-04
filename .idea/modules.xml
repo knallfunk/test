@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud.iml" filepath="$PROJECT_DIR$/smp-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-api/smp-cloud-api.iml" filepath="$PROJECT_DIR$/smp-cloud-api/smp-cloud-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-biz/smp-cloud-biz.iml" filepath="$PROJECT_DIR$/smp-cloud-biz/smp-cloud-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-common/smp-cloud-common.iml" filepath="$PROJECT_DIR$/smp-cloud-common/smp-cloud-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-dal/smp-cloud-dal.iml" filepath="$PROJECT_DIR$/smp-cloud-dal/smp-cloud-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-sal/smp-cloud-sal.iml" filepath="$PROJECT_DIR$/smp-cloud-sal/smp-cloud-sal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smp-cloud-web/smp-cloud-web.iml" filepath="$PROJECT_DIR$/smp-cloud-web/smp-cloud-web.iml" />
+    </modules>
+  </component>
+</project>

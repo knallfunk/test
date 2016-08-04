@@ -1,0 +1,11 @@
+package com.wisedu.cloud.smp.sal.apiapply.api;
+
+import com.wisedu.cloud.smp.common.exception.SalBusinessException;
+
+/**
+ * Created by Administrator on 2016/7/6.
+ */
+public interface AuthServiceAPI {
+
+    Boolean getUserAccessPermission(String sessionId) throws SalBusinessException;
+}

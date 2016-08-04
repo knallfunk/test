@@ -1,0 +1,18 @@
+package com.wisedu.cloud.smp.api.params;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/2/25.
+ */
+public class ApplyStatusGetResponse extends BaseResponse{
+    private List<ApplyStatus> applyStatuses;
+
+    public List<ApplyStatus> getApplyStatuses() {
+        return applyStatuses;
+    }
+
+    public void setApplyStatuses(List<ApplyStatus> applyStatuses) {
+        this.applyStatuses = applyStatuses;
+    }
+}

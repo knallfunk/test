@@ -1,0 +1,4 @@
+<div id="loginLayer" class="modal-body" style="overflow:scroll;display: none; width: 550px; height: 300px;">
+    <div id="errorInfo"></div>
+    <div id="canLoginUsers"  style="top:35px;left:10px;right:10px"></div>
+</div>

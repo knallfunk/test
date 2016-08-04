@@ -1,0 +1,46 @@
+package com.wisedu.cloud.smp.dal.sp.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.dao.ServiceDao;
+import com.wisedu.cloud.smp.dal.sp.mapper.ServiceExtendMapper;
+import com.wisedu.cloud.smp.dal.sp.model.extend.ServSearchCondition;
+import com.wisedu.cloud.smp.dal.sp.model.extend.ServiceInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+@Repository("serviceDao")
+public class ServiceDaoImpl implements ServiceDao {
+
+    @Autowired
+    private ServiceExtendMapper serviceExtendMapper;
+
+    @Override
+    public List<ServiceInfo> getServicesByCondition(ServSearchCondition condition) throws DaoException {
+        if(null == condition){
+            return new ArrayList<>();
+        }
+        try {
+            return serviceExtendMapper.selectServiceByCondition(condition);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public List<ServiceInfo> getServicesByApplyApp(String appId) throws DaoException {
+        if(null == appId || "".equals(appId)){
+            return new ArrayList<>();
+        }
+        try {
+            return  serviceExtendMapper.selectServiceByApplyApp(appId);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+}

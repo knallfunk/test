@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.biz.service.api;
+
+import com.wisedu.cloud.smp.dal.sp.model.extend.QueryStatusCondition;
+import com.wisedu.cloud.smp.common.exception.ServiceException;
+import com.wisedu.cloud.smp.dal.spc.model.extend.SetTokenTask;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/5/11.
+ */
+public interface TokenSetTaskService {
+
+    List<SetTokenTask> getSetTokenTask(List<QueryStatusCondition> queryStatusConditions)  throws ServiceException;
+}

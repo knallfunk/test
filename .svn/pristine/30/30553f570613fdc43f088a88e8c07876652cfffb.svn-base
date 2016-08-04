@@ -1,0 +1,49 @@
+package com.wisedu.cloud.smp.dal.spc.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.spc.dao.SchoolRegDao;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolRegMapper;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolReg;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolRegExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by Administrator on 2016/6/28.
+ */
+@Service("schoolRegDao")
+public class SchoolRegDaoImpl implements SchoolRegDao {
+
+    @Autowired
+    private SchoolRegMapper schoolRegMapper;
+
+    public List<SchoolReg> getSchoolRegs(SchoolRegExample schoolRegExample) throws DaoException{
+        try {
+            return schoolRegMapper.selectByExample(schoolRegExample);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+
+    public int insertSchoolRegVersion(SchoolReg schoolReg) throws DaoException{
+        try {
+            schoolReg.setCreateTime(new Date());
+            schoolReg.setUpdateTime(new Date());
+            schoolReg.setStatus((short)0);
+            return schoolRegMapper.insert(schoolReg);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+
+    public int isVersionExist(SchoolRegExample schoolRegExample) throws DaoException{
+        try {
+            return schoolRegMapper.countByExample(schoolRegExample);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+}

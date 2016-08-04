@@ -1,0 +1,30 @@
+package com.wisedu.cloud.smp.dal.sp.mapper;
+
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategory;
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategoryExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface ServiceCategoryMapper {
+    int countByExample(@Param("example") ServiceCategoryExample example);
+
+    int deleteByExample(@Param("example") ServiceCategoryExample example);
+
+    int deleteByPrimaryKey(@Param("id") Integer id);
+
+    int insert(@Param("record") ServiceCategory record);
+
+    int insertSelective(@Param("record") ServiceCategory record);
+
+    List<ServiceCategory> selectByExample(@Param("example") ServiceCategoryExample example);
+
+    ServiceCategory selectByPrimaryKey(@Param("id") Integer id);
+
+    int updateByExampleSelective(@Param("record") ServiceCategory record, @Param("example") ServiceCategoryExample example);
+
+    int updateByExample(@Param("record") ServiceCategory record, @Param("example") ServiceCategoryExample example);
+
+    int updateByPrimaryKeySelective(@Param("record") ServiceCategory record);
+
+    int updateByPrimaryKey(@Param("record") ServiceCategory record);
+}

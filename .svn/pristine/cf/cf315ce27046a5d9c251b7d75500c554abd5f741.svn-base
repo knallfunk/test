@@ -1,0 +1,56 @@
+package com.wisedu.cloud.smp.dal.spc.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.spc.dao.SchoolAppDao;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolAppMapper;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolAppServiceExtMapper;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolApp;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolAppExample;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/7.
+ */
+@Repository("schoolAppDao")
+public class SchoolAppDaoImpl implements SchoolAppDao {
+    @Autowired
+    private SchoolAppMapper schoolAppMapper;
+
+    @Override
+    public void insertSchoolApp(SchoolApp schoolApp) throws DaoException {
+        try {
+            schoolAppMapper.insertSelective(schoolApp);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public List<SchoolApp> getSchoolAppByExample(SchoolAppExample example) throws DaoException {
+        try {
+            return schoolAppMapper.selectByExample(example);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public void updateSchoolApp(SchoolApp schoolApp, SchoolAppExample example) throws DaoException {
+        try {
+            schoolAppMapper.updateByExampleSelective(schoolApp,example);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public void updateSchoolAppById(SchoolApp schoolApp) throws DaoException {
+        schoolAppMapper.updateByPrimaryKeySelective(schoolApp);
+    }
+
+
+}

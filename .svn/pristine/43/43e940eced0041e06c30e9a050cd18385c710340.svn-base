@@ -1,0 +1,45 @@
+package com.wisedu.cloud.smp.common.conf;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
+
+/**
+ * 一些全局变量可以放在此处初始化
+ * 
+ * @author huangxuecan
+ *
+ *         add pressure test semaphore to wm yy 20150407
+ *
+ */
+public class WorkManager {
+	// private static Logger logger = Logger.getLogger(WorkManager.class);
+
+	private WorkManager() {
+		// logger.info("WorkManger Constructor");
+	}
+
+	private static WorkManager instance = new WorkManager();
+
+	public static WorkManager getInstance() {
+		// logger.info("WorkManager GetInstance");
+		return instance;
+	}
+
+	private Map<String, Object> baseEnvironment = new HashMap<String, Object>();
+
+	public Map<String, Object> getBaseEnvironment() {
+		return baseEnvironment;
+	}
+
+	public void setBaseEnvironment(Map<String, Object> baseEnvironment) {
+		this.baseEnvironment = baseEnvironment;
+	}
+
+	private final Semaphore sema = new Semaphore(1);
+
+	public Semaphore getPTestSamephore() {
+		return sema;
+	}
+
+}

@@ -1,0 +1,32 @@
+#set($layout = "layout/layout.vm")
+<div class="main-style">
+    <div class="search-area-style">
+        <input type="text" class="" id="content">
+        <button type="button" class="search-bnt" id="searchContent">搜索</button>
+    </div>
+    <div class="content-container">
+        <table id="school-shows" class="table"></table>
+    </div>
+
+    <div class="modal fade show" id="productType" role="dialog">
+        <label>产品类型</label>
+        <div class="product-type">
+            <select id="schoolSelect" class="select-style">
+                <option value="-1">请选择产品类型</option>
+                <option value="1">完整版</option>
+                <option value="2">精简版</option>
+            </select>
+        </div>
+        <div class="dialog-bnt">
+            <button type="button" class="position search-bnt" id="submitBnt" data-dismiss="modal">确定</button>
+            <button type="button" class="position search-bnt" id="cancelBnt" data-dismiss="modal">取消</button>
+        </div>
+    </div>
+    <div class="modal fade license-show" id="licenseView">
+        <div class="license-title">
+            <label>产品license</label>
+            <button class="close close-tip" type="button" data-dismiss="modal">x</button>
+        </div>
+        <textarea class="text-style" id="schoolLicense"></textarea>
+    </div>
+</div>

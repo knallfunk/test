@@ -1,0 +1,16 @@
+jdbc.spc.driverClassName=com.mysql.jdbc.Driver
+
+mybatis_validationQuery=SELECT 1
+#mybatis_jdbc_url=jdbc:mysql://172.16.206.17:3306/service_platform?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+mybatis_jdbc_spc_url=jdbc:mysql://rds37ox3c6351nc82996i.mysql.rds.aliyuncs.com:3306/smp_cloud?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+#mybatis_jdbc_url=jdbc:mysql://127.0.0.1:3306/service_platform?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+#mybatis_jdbc_url=jdbc:mysql://202.195.244.151:3306/service_platform?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+#mybatis_jdbc_username=root
+#mybatis_jdbc_password=passw0rd
+mybatis_jdbc_spc_username=sys_cloud
+mybatis_jdbc_spc_password=wisedu-2016
+mybatis_jdbc_spc_maxPoolSize=50
+mybatis_jdbc_spc_minPoolSize=10
+mybatis_jdbc_spc_initialPoolSize=10
+mybatis_jdbc_spc_idleConnectionTestPeriod=1800
+mybatis_jdbc_spc_maxIdleTime=3600

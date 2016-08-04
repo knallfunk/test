@@ -1,0 +1,26 @@
+package com.wisedu.cloud.smp.dal.sp.model.extend;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+public class ServSearchCondition {
+    private String serviceName;
+    private Integer categoryId;
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+}

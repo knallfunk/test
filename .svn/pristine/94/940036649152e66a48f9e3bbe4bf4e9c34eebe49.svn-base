@@ -1,0 +1,19 @@
+package com.wisedu.cloud.smp.common.conf;
+
+/**
+ * Created by huangxuecan on 2016/3/9.
+ */
+public class GlobalConf {
+    public static String PWD_SALT = "wisedu";
+
+    public static final String CKEY_GENERATOR = "wisedu";
+
+    public static class TempletesURI {
+        public final static String SYSTEM_ERROR = "systemError";
+        public final static String PAGE_500 = "500";
+        public final static String PAGE_404 = "404";
+        public final static String PAGE_503 = "503";
+        public final static String PRODUCT_REG = "screen/productreg/productReg";
+        public final static String SCHOOL_LICENSE = "screen/productreg/schoolLicense";
+    }
+}

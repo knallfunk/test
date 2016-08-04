@@ -1,0 +1,44 @@
+package com.wisedu.cloud.smp.biz.service.impl.api;
+
+import com.wisedu.cloud.smp.dal.sp.model.extend.QueryStatusCondition;
+import com.wisedu.cloud.smp.biz.service.api.TokenSetTaskService;
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.common.exception.ServiceException;
+import com.wisedu.cloud.smp.dal.spc.dao.TaskDao;
+import com.wisedu.cloud.smp.dal.spc.model.extend.SetTokenTask;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * Created by huangxuecan on 2016/5/11.
+ */
+@Service("tokenSetTaskService")
+public class TokenSetTaskServiceImpl implements TokenSetTaskService {
+
+    @Autowired
+    private TaskDao taskDao;
+    @Override
+    public List<SetTokenTask> getSetTokenTask(List<QueryStatusCondition> queryStatusConditions) throws ServiceException {
+        try {
+            if(null == queryStatusConditions || queryStatusConditions.isEmpty()){
+                return new ArrayList<>();
+            }
+            Set<String> schoolIds = new HashSet<>();
+            Set<String> appIds = new HashSet<>();
+
+            for(QueryStatusCondition queryStatusCondition : queryStatusConditions){
+                schoolIds.add(queryStatusCondition.getSchoolId());
+                appIds.add(queryStatusCondition.getAppId());
+            }
+
+            return taskDao.getSetTokenTask(schoolIds,appIds);
+        } catch (DaoException e) {
+            throw new ServiceException("",e);
+        }
+    }
+}

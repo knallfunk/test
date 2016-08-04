@@ -1,0 +1,118 @@
+package com.wisedu.cloud.smp.web.restapi;
+
+import com.google.common.base.Strings;
+import com.wisedu.cloud.smp.api.params.BaseResponse;
+import com.wisedu.cloud.smp.biz.model.api.SchoolGetBo;
+import com.wisedu.cloud.smp.biz.service.api.SchoolApiService;
+import com.wisedu.cloud.smp.dal.spc.model.School;
+import com.wisedu.cloud.smp.dal.spc.model.extend.Page;
+import com.wisedu.cloud.smp.web.common.WebUtils;
+import com.wisedu.cloud.smp.web.constant.RetMsg;
+import com.wisedu.cloud.smp.web.constant.RetStatus;
+import com.wisedu.cloud.smp.web.params.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * Created by luqiang on 2016/6/22.
+ */
+@Controller
+@RequestMapping("/restful/web")
+public class SchoolRestAPI {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SchoolRestAPI.class);
+
+    @Autowired
+    private SchoolApiService apiService;
+
+    @RequestMapping(value = "/school/get",method = RequestMethod.POST,headers = "Content-Type=application/json")
+    @ResponseBody
+    public SchoolGetResponse getSchoolByCondition(@RequestBody SchoolGetRequest request){
+        SchoolGetResponse response = new SchoolGetResponse();
+        if (null == request || null == request.getPageNo() || null == request.getPageSize()
+                || request.getPageNo() < 0 || request.getPageSize() < 0){
+            response.setMsg(RetMsg.ParamException.PAGE_ILLEGAL);
+            response.setStatus(RetStatus.PARAM_ERROR.getValue());
+            return response;
+        }
+        try {
+            Page page = new Page();
+            page.setStart(request.getPageSize() * (request.getPageNo() - 1));
+            page.setSize(request.getPageSize());
+            SchoolGetBo schoolGetBo = apiService.getSchoolsByCondition(request.getCondition(),page);
+            if (null != schoolGetBo && null !=schoolGetBo.getRows()){
+                response.setRows(schoolGetBo.getRows());
+                response.setTotal(schoolGetBo.getTotal());
+                response.setMsg(RetMsg.MsgStatus.SUCCESS);
+                response.setStatus(RetStatus.SUCESS.getValue());
+            }else {
+                response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+                response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+            }
+        }catch (Exception e){
+            LOGGER.error(WebUtils.getCurrentMethodName() + WebUtils.MEET_EXCEPTION,e);
+            response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+            response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/license/generate",method = RequestMethod.POST,headers = "Content-Type=application/json")
+    @ResponseBody
+    public BaseResponse generateLicenseBySchoolId(@RequestBody LicenseGenerateRequest request){
+        BaseResponse response = new BaseResponse();
+        if (null == request.getProductType() || Strings.isNullOrEmpty(request.getSchoolId())){
+            response.setMsg(RetMsg.ParamException.PARAMS_NULL);
+            response.setStatus(RetStatus.PARAM_ERROR.getValue());
+            return response;
+        }
+        try {
+            boolean flag = apiService.generateSchoolLicense(request.getSchoolId(),request.getProductType());
+            if (flag){
+                response.setMsg(RetMsg.MsgStatus.SUCCESS);
+                response.setStatus(RetStatus.SUCESS.getValue());
+                return response;
+            }
+            response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+            response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+        }catch (Exception e){
+            LOGGER.error(WebUtils.getCurrentMethodName() + WebUtils.MEET_EXCEPTION,e);
+            response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+            response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/get/license",method = RequestMethod.POST,headers = "Content-Type=application/json")
+    @ResponseBody
+    public LicenseGetResponse getLicenseBySchoolId(@RequestBody LicenseGetRequest request){
+        LicenseGetResponse response = new LicenseGetResponse();
+        if (Strings.isNullOrEmpty(request.getSchoolId())){
+            response.setMsg(RetMsg.ParamException.SCHOOL_ID_NULL);
+            response.setStatus(RetStatus.PARAM_ERROR.getValue());
+            return response;
+        }
+        try {
+            String license = apiService.getSchoolLicense(request.getSchoolId());
+            if (Strings.isNullOrEmpty(license)){
+                response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+                response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+                return response;
+            }
+            response.setLicense(license);
+            response.setMsg(RetMsg.MsgStatus.SUCCESS);
+            response.setStatus(RetStatus.SUCESS.getValue());
+        }catch (Exception e){
+            LOGGER.error(WebUtils.getCurrentMethodName() + WebUtils.MEET_EXCEPTION,e);
+            response.setMsg(RetMsg.MsgStatus.SYSTEM_ERROR);
+            response.setStatus(RetStatus.SYSTEM_ERROR.getValue());
+        }
+        return response;
+    }
+}

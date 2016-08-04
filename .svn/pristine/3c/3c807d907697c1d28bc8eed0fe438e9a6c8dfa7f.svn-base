@@ -1,0 +1,55 @@
+package com.wisedu.cloud.smp.dal.sp.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.redisdao.ServCateRedisDao;
+import com.wisedu.cloud.smp.dal.sp.dao.ServiceCategoryDao;
+import com.wisedu.cloud.smp.dal.sp.mapper.ServiceCategoryMapper;
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategory;
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategoryExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/3.
+ */
+@Repository("serviceCategoryDao")
+public class ServiceCategoryDaoImpl implements ServiceCategoryDao {
+
+    @Autowired
+    private ServiceCategoryMapper serviceCategoryMapper;
+
+    @Autowired
+    private ServCateRedisDao servCateRedisDao;
+
+    @Override
+    public List<ServiceCategory> getAllServiceCategories() throws DaoException {
+        try {
+            List<ServiceCategory> serviceCategories = servCateRedisDao.getServiceCategories();
+            if(null == serviceCategories || serviceCategories.isEmpty()) {
+                ServiceCategoryExample serviceCategoryExample = new ServiceCategoryExample();
+                serviceCategoryExample.setOrderByClause("id ASC");
+                serviceCategoryExample.createCriteria().andIsDelEqualTo(false);
+                serviceCategories = serviceCategoryMapper.selectByExample(serviceCategoryExample);
+                servCateRedisDao.setCategories(serviceCategories);
+            }
+            return  serviceCategories;
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public List<ServiceCategory> selectServiceCateByName(String categoryName) throws DaoException {
+        try {
+            ServiceCategoryExample serviceCategoryExample = new ServiceCategoryExample();
+            serviceCategoryExample.setOrderByClause("id ASC");
+            serviceCategoryExample.createCriteria().andCategoryNameLike("%"+categoryName.trim()+"%").andIsDelEqualTo(false);
+            return serviceCategoryMapper.selectByExample(serviceCategoryExample);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+}

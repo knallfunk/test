@@ -1,0 +1,31 @@
+package com.wisedu.cloud.smp.web.controller;
+
+import com.wisedu.cloud.smp.common.conf.GlobalConf;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ * Created by huangxuecan on 2016/5/5.
+ */
+@Controller("systemController")
+public class SystemController {
+
+    @RequestMapping(value = "404.html")
+    public ModelAndView getPage404() {
+        return new ModelAndView(GlobalConf.TempletesURI.PAGE_404);
+    }
+
+    @RequestMapping(value = "500.html")
+    public ModelAndView getPage500() {
+        return new ModelAndView(GlobalConf.TempletesURI.PAGE_500);
+    }
+    @RequestMapping(value = "503.html")
+    public ModelAndView getPage503() {
+        return new ModelAndView(GlobalConf.TempletesURI.PAGE_503);
+    }
+    @RequestMapping(value = "systemError.html")
+    public ModelAndView getSystemError() {
+        return new ModelAndView(GlobalConf.TempletesURI.SYSTEM_ERROR);
+    }
+}

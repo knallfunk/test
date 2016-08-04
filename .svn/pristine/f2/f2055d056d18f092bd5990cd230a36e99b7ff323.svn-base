@@ -1,0 +1,13 @@
+package com.wisedu.cloud.smp.common.exception;
+
+/**
+ * Created by huangxuecan on 2016/5/12.
+ */
+public class SetTokenWarningException extends RuntimeException {
+    public SetTokenWarningException(){
+        super();
+    }
+    public SetTokenWarningException(String msg){
+        super(msg);
+    }
+}

@@ -1,0 +1,55 @@
+package com.wisedu.cloud.smp.api;
+
+import com.wisedu.cloud.smp.api.params.*;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/2/24.
+ */
+@WebService
+public interface ServiceAPI {
+
+    @WebResult(name = "ApiCategoryGetResponse")
+    ApiCategoryGetResponse getApiCategories();
+
+
+    @WebResult(name = "ApisGetResponse")
+    ApisGetResponse getApisByCategoryId(@WebParam(name = "ApisGetRequest")ApisGetRequest apisGetRequest);
+
+
+    @WebResult(name = "CategoriesSearchResponse")
+    CategoriesSearchResponse searchCategories(@WebParam(name = "SearchRequest")SearchRequest searchRequest);
+
+
+    @WebResult(name = "ApiSearchResponse")
+    ApiSearchResponse searchApis(@WebParam(name = "SearchRequest")SearchRequest searchRequest);
+
+
+    @WebResult(name = "BaseResponse")
+    BaseResponse applyApis(@WebParam(name = "ApisApplyRequest")ApisApplyRequest apisApplyRequest);
+
+
+    @WebResult(name = "ApplyStatusGetResponse")
+    ApplyStatusGetResponse getApplyStatus(@WebParam(name = "ApplyStatusGetRequest")ApplyStatusGetRequest applyStatusGetRequest);
+
+
+    @WebResult(name = "AppliedApisGetResponse")
+    AppliedApisGetResponse getAppliedApis(@WebParam(name = "AppliedApisGetRequest")AppliedApisGetRequest appliedApisGetRequest);
+
+
+    @WebResult(name = "BaseResponse")
+    BaseResponse setSchoolAccessToken(@WebParam(name = "SchoolTokenSetRequest")SchoolTokenSetRequest schoolTokenSetRequest);
+
+
+    @WebResult(name = "SchoolEsbInfoResponse")
+    SchoolEsbInfoResponse getSchoolEsbInfo(@WebParam(name = "SchoolEsbInfoRequest") SchoolEsbInfoRequest schoolEsbInfoRequest);
+
+    @WebResult(name = "TaskStatusResponse")
+    TaskStatusResponse getSetTokenTaskStatus(@WebParam(name = "TaskStatusRequest") TaskStatusRequest taskStatusRequest);
+
+}

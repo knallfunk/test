@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+">
+
+
+
+
+	<!-- smp数据源 -->
+	<bean name="mybatisdataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="jdbcUrl" value="${mybatis_jdbc_url}" />
+		<property name="user" value="${mybatis_jdbc_username}" />
+		<property name="password" value="${mybatis_jdbc_password}" />
+
+		<property name="driverClass">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${mybatis_jdbc_maxPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${mybatis_jdbc_minPoolSize}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${mybatis_jdbc_idleConnectionTestPeriod}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${mybatis_jdbc_maxIdleTime}</value>
+		</property>
+		<property name="maxStatements">
+			<value>0</value>
+		</property>
+
+	</bean>
+
+	<!--云端 smp服务 数据源-->
+	<bean name="mybatisdataSourceSpc" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		  destroy-method="close">
+		<property name="jdbcUrl" value="${mybatis_jdbc_spc_url}" />
+		<property name="user" value="${mybatis_jdbc_spc_username}" />
+		<property name="password" value="${mybatis_jdbc_spc_password}" />
+
+		<property name="driverClass">
+			<value>${jdbc.spc.driverClassName}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${mybatis_jdbc_spc_maxPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${mybatis_jdbc_spc_minPoolSize}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${mybatis_jdbc_spc_idleConnectionTestPeriod}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${mybatis_jdbc_spc_maxIdleTime}</value>
+		</property>
+		<property name="maxStatements">
+			<value>0</value>
+		</property>
+
+	</bean>
+
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mybatisdataSource" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath:sqlmapping/sp/*.xml" />
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com.wisedu.cloud.smp.dal.sp.mapper" />
+		<property name="SqlSessionTemplateBeanName" value="sqlSession" />
+	</bean>
+
+	<bean id="sqlSessionFactorySpc" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mybatisdataSourceSpc" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath:sqlmapping/spc/*.xml" />
+	</bean>
+	<bean id="sqlSessionSpc" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactorySpc" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+				  value="com.wisedu.cloud.smp.dal.spc.mapper" />
+		<property name="SqlSessionTemplateBeanName" value="sqlSessionSpc" />
+	</bean>
+
+</beans>

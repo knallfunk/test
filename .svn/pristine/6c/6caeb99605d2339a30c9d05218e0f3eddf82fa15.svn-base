@@ -1,0 +1,30 @@
+package com.wisedu.cloud.smp.dal.spc.mapper;
+
+import com.wisedu.cloud.smp.dal.spc.model.School;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface SchoolMapper {
+    int countByExample(@Param("example") SchoolExample example);
+
+    int deleteByExample(@Param("example") SchoolExample example);
+
+    int deleteByPrimaryKey(@Param("schoolId") String schoolId);
+
+    int insert(@Param("record") School record);
+
+    int insertSelective(@Param("record") School record);
+
+    List<School> selectByExample(@Param("example") SchoolExample example);
+
+    School selectByPrimaryKey(@Param("schoolId") String schoolId);
+
+    int updateByExampleSelective(@Param("record") School record, @Param("example") SchoolExample example);
+
+    int updateByExample(@Param("record") School record, @Param("example") SchoolExample example);
+
+    int updateByPrimaryKeySelective(@Param("record") School record);
+
+    int updateByPrimaryKey(@Param("record") School record);
+}

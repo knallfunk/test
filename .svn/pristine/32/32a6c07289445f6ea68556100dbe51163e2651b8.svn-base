@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.dal.sp.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategory;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/3.
+ */
+public interface ServiceCategoryDao {
+    List<ServiceCategory> getAllServiceCategories() throws DaoException;
+
+    List<ServiceCategory> selectServiceCateByName(String categoryName) throws DaoException;
+}

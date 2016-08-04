@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit
+       http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-4.1.xsd">
+
+    <bean id="connectionFactory"
+          class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+        <property name="username" value="guest"/>
+        <property name="password" value="guest"/>
+        <property name="host"     value="172.16.7.132" />
+        <property name="port"     value="5672" />
+        <property name="connectionCacheSize" value="1" />
+    </bean>
+
+    <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
+        <property name="backOffPolicy">
+            <bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
+                <property name="initialInterval" value="500" />
+                <property name="multiplier" value="10.0" />
+                <property name="maxInterval" value="10000" />
+            </bean>
+        </property>
+    </bean>
+    <task:executor id="taskExecutor" pool-size="4-256" queue-capacity="128" />
+    <bean id="messageConverter"
+          class="org.springframework.amqp.support.converter.JsonMessageConverter">
+    </bean>
+
+    <rabbit:admin id="rabbitAdmin" connection-factory="connectionFactory" />
+    <rabbit:template  id="rabbitTemplate" connection-factory="connectionFactory" message-converter="messageConverter" />
+
+
+    <rabbit:queue name="${applyservice.queue.name}" auto-declare="true" durable="true" auto-delete="false" declared-by="rabbitAdmin"    id="queueApplyService" />
+    <rabbit:queue name="${setschooltoken.queue.name}" auto-declare="true" durable="true" auto-delete="false" declared-by="rabbitAdmin"    id="queueSetSchoolToken" />
+
+    <rabbit:topic-exchange  name="${exchange.name}" auto-declare="true" auto-delete="true" durable="true" declared-by="rabbitAdmin">
+        <rabbit:bindings>
+            <rabbit:binding pattern="smp.apply.service.*"       queue="${applyservice.queue.name}"/>
+            <rabbit:binding pattern="smp.set.school.token.*"         queue="${setschooltoken.queue.name}" />
+
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+</beans>

@@ -1,0 +1,30 @@
+package com.wisedu.cloud.smp.dal.sp.mapper;
+
+import com.wisedu.cloud.smp.dal.sp.model.ProxyApply;
+import com.wisedu.cloud.smp.dal.sp.model.ProxyApplyExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface ProxyApplyMapper {
+    int countByExample(@Param("example") ProxyApplyExample example);
+
+    int deleteByExample(@Param("example") ProxyApplyExample example);
+
+    int deleteByPrimaryKey(@Param("id") Integer id);
+
+    int insert(@Param("record") ProxyApply record);
+
+    int insertSelective(@Param("record") ProxyApply record);
+
+    List<ProxyApply> selectByExample(@Param("example") ProxyApplyExample example);
+
+    ProxyApply selectByPrimaryKey(@Param("id") Integer id);
+
+    int updateByExampleSelective(@Param("record") ProxyApply record, @Param("example") ProxyApplyExample example);
+
+    int updateByExample(@Param("record") ProxyApply record, @Param("example") ProxyApplyExample example);
+
+    int updateByPrimaryKeySelective(@Param("record") ProxyApply record);
+
+    int updateByPrimaryKey(@Param("record") ProxyApply record);
+}

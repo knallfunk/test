@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.biz.service;
+
+/**
+ * @author huangxuecan
+ *
+ */
+public interface ConfigUpdateService {
+	
+	//configuration initial
+	public void configInit();
+	
+	//for test
+	public void configTestInit();
+
+}

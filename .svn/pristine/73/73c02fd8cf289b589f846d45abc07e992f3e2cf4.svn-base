@@ -1,0 +1,105 @@
+package com.wisedu.cloud.smp.dal.spc.model;
+
+import java.util.Date;
+
+public class SchoolEsb {
+    private Long id;
+
+    private String schoolId;
+
+    private String protocol;
+
+    private String esbHost;
+
+    private Integer esbPort;
+
+    private String smpHost;
+
+    private Integer smpPort;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    private Short status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId == null ? null : schoolId.trim();
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol == null ? null : protocol.trim();
+    }
+
+    public String getEsbHost() {
+        return esbHost;
+    }
+
+    public void setEsbHost(String esbHost) {
+        this.esbHost = esbHost == null ? null : esbHost.trim();
+    }
+
+    public Integer getEsbPort() {
+        return esbPort;
+    }
+
+    public void setEsbPort(Integer esbPort) {
+        this.esbPort = esbPort;
+    }
+
+    public String getSmpHost() {
+        return smpHost;
+    }
+
+    public void setSmpHost(String smpHost) {
+        this.smpHost = smpHost == null ? null : smpHost.trim();
+    }
+
+    public Integer getSmpPort() {
+        return smpPort;
+    }
+
+    public void setSmpPort(Integer smpPort) {
+        this.smpPort = smpPort;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wisedu.cloud.smp.dal.spc.mapper.TaskExtMapper" >
+  <resultMap id="BaseResultMap" type="com.wisedu.cloud.smp.dal.spc.model.extend.SetTokenTask" >
+
+    <result column="start_time" property="startTime" jdbcType="BIGINT" />
+    <result column="result_status" property="resultStatus" jdbcType="SMALLINT" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getSetTokenTask" resultMap="BaseResultMap"  >
+
+SELECT MAX(start_time) AS start_time,school_id,app_id,result_status,error_msg FROM
+(SELECT  start_time,school_id,app_id,result_status,error_msg FROM task WHERE school_id
+      IN
+      <foreach item="itemSchoolId" index="index" collection="schoolIds" open="(" separator="," close=")">
+          #{itemSchoolId}
+      </foreach>
+ AND app_id IN
+    <foreach item="itemAppId" index="index" collection="appIds" open="(" separator="," close=")">
+      #{itemAppId}
+    </foreach>
+    ORDER BY start_time DESC) AS a GROUP BY school_id,app_id
+  </select>
+
+
+</mapper>

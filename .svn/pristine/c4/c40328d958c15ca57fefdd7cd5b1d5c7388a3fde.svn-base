@@ -1,0 +1,17 @@
+package com.wisedu.cloud.smp.sal.common;
+
+/**
+ * Created by huangxuecan on 2016/3/22.
+ */
+public class SalConstant {
+    public static Integer SUCESS = 200;
+
+    public static Integer SUCCESS_WARNING = 201;
+
+    public static Integer PARAM_ERROR = 400;
+
+    public static String ERROR_MSG = "设置该学校的总线token失败，错误信息：";
+
+    public static String PARAM_ERROR_MSG = "请检查应用信息，以及学校schooId 是否与云端一致，错误信息：" ;
+
+}

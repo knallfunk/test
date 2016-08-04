@@ -1,0 +1,104 @@
+package com.wisedu.cloud.smp.dal.spc.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.common.util.Utils;
+import com.wisedu.cloud.smp.dal.spc.dao.SchoolEsbDao;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolAppMapper;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolEsbExtMapper;
+import com.wisedu.cloud.smp.dal.spc.mapper.SchoolEsbMapper;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolApp;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolAppExample;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolEsb;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolEsbExample;
+import com.wisedu.cloud.smp.dal.spc.model.extend.AppEsbInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/8.
+ */
+@Repository("schoolEsbDao")
+public class SchoolEsbDaoImpl implements SchoolEsbDao {
+
+    @Autowired
+    private SchoolEsbExtMapper schoolEsbExtMapper;
+
+    @Autowired
+    private SchoolAppMapper schoolAppMapper;
+
+    @Autowired
+    private SchoolEsbMapper schoolEsbMapper;
+
+
+
+    @Override
+    public List<AppEsbInfo> getAppEsbInfo(String appId, String schoolId) throws DaoException{
+        try {
+            if(null == schoolId){
+                return  new ArrayList<>();
+            }
+            List<AppEsbInfo> appEsbInfos = schoolEsbExtMapper.selectEsbInfo(schoolId);
+            if(isVoNull(appId,appEsbInfos)){
+                return appEsbInfos;
+            }
+            SchoolAppExample schoolAppExample = new SchoolAppExample();
+            schoolAppExample.createCriteria().andAppIdEqualTo(appId).andSchoolIdEqualTo(schoolId).andStatusEqualTo((short)0);
+            List<SchoolApp> schoolApps = schoolAppMapper.selectByExample(schoolAppExample);
+            if(Utils.isNullOrEmpty(schoolApps)){
+                return appEsbInfos;
+            }
+            appEsbInfos.get(0).setAccessToken(schoolApps.get(0).getAccessToken());
+            return appEsbInfos;
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    private boolean isVoNull( String appId,List<AppEsbInfo> appEsbInfos){
+       return null == appId || null == appEsbInfos || appEsbInfos.isEmpty();
+    }
+
+    @Override
+    public SchoolEsb getSchoolEsbInfo(String schoolId) throws DaoException {
+        SchoolEsbExample schoolEsbExample = new SchoolEsbExample();
+        schoolEsbExample.createCriteria().andSchoolIdEqualTo(schoolId.trim()).andStatusEqualTo((short)0);
+        List<SchoolEsb> schoolEsbs = schoolEsbMapper.selectByExample(schoolEsbExample);
+        if(null != schoolEsbs && !schoolEsbs.isEmpty()){
+            return schoolEsbs.get(0);
+        }
+        return new SchoolEsb();
+    }
+
+    @Override
+    public int isSchoolEsbExist(SchoolEsbExample schoolEsbExample) throws DaoException{
+        try {
+            return schoolEsbMapper.countByExample(schoolEsbExample);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public int insertSchoolEsb(SchoolEsb schoolEsb) throws DaoException{
+        try {
+            schoolEsb.setUpdateTime(new Date());
+            return schoolEsbMapper.insertSelective(schoolEsb);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public int updateSchoolEsb(SchoolEsb schoolEsb,SchoolEsbExample schoolEsbExample) throws DaoException{
+        try {
+            schoolEsb.setUpdateTime(new Date());
+            return schoolEsbMapper.updateByExampleSelective(schoolEsb,schoolEsbExample);
+        }catch (Exception e){
+            throw new DaoException("",e);
+        }
+    }
+}

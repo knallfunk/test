@@ -1,0 +1,3 @@
+applyservice.queue.name=aliyun.smp.cloud.applyservice
+setschooltoken.queue.name=aliyun.smp.cloud.setschooltoken
+exchange.name=aliyun.smp.cloud.source

@@ -1,0 +1,30 @@
+package com.wisedu.cloud.smp.dal.sp.mapper;
+
+import com.wisedu.cloud.smp.dal.sp.model.UserRole;
+import com.wisedu.cloud.smp.dal.sp.model.UserRoleExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface UserRoleMapper {
+    int countByExample(@Param("example") UserRoleExample example);
+
+    int deleteByExample(@Param("example") UserRoleExample example);
+
+    int deleteByPrimaryKey(@Param("id") Integer id);
+
+    int insert(@Param("record") UserRole record);
+
+    int insertSelective(@Param("record") UserRole record);
+
+    List<UserRole> selectByExample(@Param("example") UserRoleExample example);
+
+    UserRole selectByPrimaryKey(@Param("id") Integer id);
+
+    int updateByExampleSelective(@Param("record") UserRole record, @Param("example") UserRoleExample example);
+
+    int updateByExample(@Param("record") UserRole record, @Param("example") UserRoleExample example);
+
+    int updateByPrimaryKeySelective(@Param("record") UserRole record);
+
+    int updateByPrimaryKey(@Param("record") UserRole record);
+}

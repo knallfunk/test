@@ -1,0 +1,65 @@
+#set($layout = "layout/layout.vm")
+<div class="container-fluid">
+    <div class="row-fluid">
+
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail" >学校id</label>
+                    <div class="controls">
+                        <input id="inputSchoolId" type="text" value="$inputSchoolId" disabled/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword" >学校名称</label>
+                    <div class="controls">
+                        <input id="inputSchoolName" type="text" value="$inputSchoolName" disabled/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">SMP域名</label>
+                     #if($smpHost)
+                         #set($smpValue = $smpHost)
+                     #else
+                         #set($smpValue = "")
+                     #end
+                    <div class="controls">
+                        <input id="inputSMPDomain" type="text" placeholder="例如：http://smp.wisedu.com:80" value="$smpValue"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword" >API域名</label>
+                    <div class="controls">
+                        <input id="inputAPIDomain" type="text" placeholder="例如：http://smp.wisedu.com:80" value="$apiDomain" disabled/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">版本历史</label>
+                    <div class="controls">
+                        <select id="inputRegVersion">
+                            #foreach($element in $schoolRegs)
+                                <option value="$element.id">安装时间：$!date.format('yyyy-MM-dd HH:mm:ss',$!element.createTime) --- 版本号：$element.version</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword" >当前安装版本</label>
+                    <div class="controls">
+                        <input id="inputInstallVersion" type="text" value="$version" disabled/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    #if($isSave == "true")
+                        <div class="controls">
+                            <button class="btn bnt-submit" type="button" id="saveInfo">更新</button>
+                        </div>
+                    #else
+                        <div class="controls">
+                            <button class="btn bnt-submit" type="button" id="saveInfo">提交</button>
+                        </div>
+                    #end
+
+                </div>
+            </form>
+    </div>
+</div>

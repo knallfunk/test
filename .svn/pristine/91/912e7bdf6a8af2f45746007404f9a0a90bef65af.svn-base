@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.dal.conf;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+public enum ApplyAuditState {
+    AUDIT_BEFORE("AUDIT_BEFORE"),AUDIT_FAILED("AUDIT_FAILED"),AUDIT_NOW("AUDIT_NOW"),AUDIT_SUCCESS("AUDIT_SUCCESS");
+    private String value ;
+    ApplyAuditState(String value){
+        this.value = value;
+    }
+    public String getValue(){
+        return this.value;
+    }
+}

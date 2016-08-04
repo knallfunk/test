@@ -1,0 +1,16 @@
+package com.wisedu.cloud.smp.dal.sp.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.model.extend.ServSearchCondition;
+import com.wisedu.cloud.smp.dal.sp.model.extend.ServiceInfo;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+public interface ServiceDao {
+    List<ServiceInfo> getServicesByCondition(ServSearchCondition condition) throws DaoException;
+
+    List<ServiceInfo> getServicesByApplyApp(String appId) throws DaoException;
+}

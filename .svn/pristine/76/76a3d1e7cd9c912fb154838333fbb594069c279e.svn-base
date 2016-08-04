@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<classPathEntry location="C:\mysql-connector-java-5.1.27.jar" />
+
+	<context id="noPatitionTablesW" targetRuntime="MyBatis3">
+	<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		  
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.7.128:3306/smp_cloud" userId="admin" password="1qaz2wsx@wisedu@2015">
+		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.wisedu.cloud.smp.dal.spc.model" targetProject="..\smp-cloud-dal\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="sqlmapping.spc" targetProject="..\smp-cloud-web\src\main\resources\base">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.wisedu.cloud.smp.dal.spc.mapper" targetProject="..\smp-cloud-dal\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="school" domainObjectName="School" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >-->
+			<!-- -->
+		<!--</table>-->
+
+		<!--<table tableName="school_app" domainObjectName="SchoolApp" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >-->
+			<!--<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />-->
+		<!--</table>-->
+
+		<!--<table tableName="school_esb" domainObjectName="SchoolEsb" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >-->
+			<!--<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />-->
+		<!--</table>-->
+
+		<!--<table tableName="school_app_service" domainObjectName="SchoolAppService" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >-->
+			<!--<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />-->
+		<!--</table>-->
+
+		<table tableName="task" domainObjectName="Task" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />
+		</table>
+		<table tableName="school_license" domainObjectName="SchoolLicense" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />
+		</table>
+
+		<table tableName="school_reg" domainObjectName="SchoolReg" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" type = "post" />
+		</table>
+	</context>
+</generatorConfiguration>

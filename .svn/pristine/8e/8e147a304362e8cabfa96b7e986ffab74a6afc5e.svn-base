@@ -1,0 +1,11 @@
+package com.wisedu.cloud.smp.dal.conf;
+/**
+ * @author huangxuecan
+ *
+ * created on 2015年2月11日 下午5:07:31
+ */
+public class Constant {
+
+    public static Integer TASK_ERROR_MSG_LEN = 1500;
+
+}

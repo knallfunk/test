@@ -1,0 +1,16 @@
+package com.wisedu.cloud.smp.biz.config;
+
+/**
+ * Created by huangxuecan on 2016/1/12.
+ */
+public enum TaskStatus {
+    RUNNIN((short)0),FINISH_SUCESS((short)1),FINISH_ERROR((short)2),FINISH_WARNING((short)3);
+
+    private Short value ;
+    TaskStatus(Short value){
+        this.value = value;
+    }
+    public Short getValue(){
+        return this.value;
+    }
+}

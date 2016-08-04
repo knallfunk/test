@@ -1,0 +1,57 @@
+package com.wisedu.cloud.smp.common.util;
+
+import org.apache.cxf.binding.soap.SoapHeader;
+import org.apache.cxf.binding.soap.SoapMessage;
+import org.apache.cxf.binding.soap.interceptor.AbstractSoapInterceptor;
+import org.apache.cxf.headers.Header;
+import org.apache.cxf.helpers.DOMUtils;
+import org.apache.cxf.interceptor.Fault;
+import org.apache.cxf.phase.Phase;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.namespace.QName;
+import java.util.List;
+import java.util.Map;
+
+public class AddSoapHeader extends AbstractSoapInterceptor {
+
+	public static final String XML_NAME_URI = "";
+	public static final String XML_TIMESTAMP = "timestamp";
+	public static final String XML_SIGN = "sign";
+
+	private String timestamp = "";
+	private String sign = "";
+
+	public AddSoapHeader(Map<String, Object> headers) {
+		super(Phase.WRITE);
+		for (String key : headers.keySet()) {
+			if (XML_TIMESTAMP.equals(key)) {
+				this.timestamp = (String) headers.get(XML_TIMESTAMP);
+			}
+			if (XML_SIGN.equals(key)) {
+				this.sign = (String) headers.get(XML_SIGN);
+			}
+
+		}
+	}
+
+	public void handleMessage(SoapMessage message) {
+
+		Document doc = (Document) DOMUtils.createDocument();
+		Element timestampE = doc.createElement(XML_TIMESTAMP);
+		timestampE.appendChild(doc.createTextNode(this.timestamp));
+		Element signE = doc.createElement(XML_SIGN);
+		signE.appendChild(doc.createTextNode(this.sign));
+
+		Element root = doc.createElementNS(XML_NAME_URI,
+				"tns:RequestSOAPHeader");
+		root.appendChild(timestampE);
+		root.appendChild(signE);
+		SoapHeader head = new SoapHeader(new QName("RequestSOAPHeader"), root);
+		List<Header> headers = message.getHeaders();
+		headers.add(head);
+
+	}
+
+}

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>服务管理平台</title>
+    <link rel="stylesheet" href="htdocs/css/layout/error.css"/>
+</head>
+<body>
+<div class="sd-header">服务管理平台</div>
+<div class="select-hostel-blank"></div>
+<div class="select-hostel-line"></div>
+<div class="gopng_outer">
+    <div class="gopng_500"></div>
+</div>
+<div class="select-hostel-error-content">
+    <div class="content">SORRY</div>
+    <div class="content">服务器错误啦</div>
+    <a class="select-hostel-a" href="#">再试试看</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+package com.wisedu.cloud.smp.sal.apiapply.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Strings;
+import com.wisedu.cloud.smp.common.exception.SalBusinessException;
+import com.wisedu.cloud.smp.sal.apiapply.api.AuthServiceAPI;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by Administrator on 2016/7/6.
+ */
+@Service("authServiceAPI")
+public class AuthServiceAPIImpl implements AuthServiceAPI {
+
+    @Resource(name = "restStringTemplate")
+    private RestTemplate    restTemplate;
+
+    public Boolean getUserAccessPermission(String sessionId) throws SalBusinessException{
+        if (Strings.isNullOrEmpty(sessionId)){
+            throw new SalBusinessException("params null");
+        }
+        String resStr;
+        try {
+            Map<String,String> params = new HashMap<>();
+            params.put("sessionId",sessionId);
+            resStr = restTemplate.postForObject("", params, String.class);
+            JSONObject resJson = JSON.parseObject(resStr);
+            if (Integer.getInteger(resJson.get("status").toString()) == 200){
+                return Boolean.getBoolean(resJson.get("isExist").toString());
+            }
+        }catch (Exception e){
+            throw new SalBusinessException("",e);
+        }
+        return false;
+    }
+}

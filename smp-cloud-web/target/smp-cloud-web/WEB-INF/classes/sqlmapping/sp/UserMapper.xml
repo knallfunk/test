@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wisedu.cloud.smp.dal.sp.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.wisedu.cloud.smp.dal.sp.model.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+    <result column="visit_count" property="visitCount" jdbcType="BIGINT" />
+    <result column="last_visit" property="lastVisit" jdbcType="TIMESTAMP" />
+    <result column="is_app" property="isApp" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="sso_account" property="ssoAccount" jdbcType="VARCHAR" />
+    <result column="app_access_token" property="appAccessToken" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, user_name, password, description, email, phone, last_ip, visit_count, last_visit, 
+    is_app, create_time, update_time, is_del, sso_account, app_access_token
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wisedu.cloud.smp.dal.sp.model.UserExample" >
+    select
+    <if test="example.distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+    <if test="example.limitStart != null and example.limitStart>=0" >
+      limit #{example.limitStart} , #{example.limitSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wisedu.cloud.smp.dal.sp.model.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wisedu.cloud.smp.dal.sp.model.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="record.userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (user_name, password, 
+      description, email, phone, 
+      last_ip, visit_count, last_visit, 
+      is_app, create_time, update_time, 
+      is_del, sso_account, app_access_token
+      )
+    values (#{record.userName,jdbcType=VARCHAR}, #{record.password,jdbcType=VARCHAR}, 
+      #{record.description,jdbcType=VARCHAR}, #{record.email,jdbcType=VARCHAR}, #{record.phone,jdbcType=VARCHAR}, 
+      #{record.lastIp,jdbcType=VARCHAR}, #{record.visitCount,jdbcType=BIGINT}, #{record.lastVisit,jdbcType=TIMESTAMP}, 
+      #{record.isApp,jdbcType=BIT}, #{record.createTime,jdbcType=TIMESTAMP}, #{record.updateTime,jdbcType=TIMESTAMP}, 
+      #{record.isDel,jdbcType=BIT}, #{record.ssoAccount,jdbcType=VARCHAR}, #{record.appAccessToken,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wisedu.cloud.smp.dal.sp.model.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="record.userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="record.userName != null" >
+        user_name,
+      </if>
+      <if test="record.password != null" >
+        password,
+      </if>
+      <if test="record.description != null" >
+        description,
+      </if>
+      <if test="record.email != null" >
+        email,
+      </if>
+      <if test="record.phone != null" >
+        phone,
+      </if>
+      <if test="record.lastIp != null" >
+        last_ip,
+      </if>
+      <if test="record.visitCount != null" >
+        visit_count,
+      </if>
+      <if test="record.lastVisit != null" >
+        last_visit,
+      </if>
+      <if test="record.isApp != null" >
+        is_app,
+      </if>
+      <if test="record.createTime != null" >
+        create_time,
+      </if>
+      <if test="record.updateTime != null" >
+        update_time,
+      </if>
+      <if test="record.isDel != null" >
+        is_del,
+      </if>
+      <if test="record.ssoAccount != null" >
+        sso_account,
+      </if>
+      <if test="record.appAccessToken != null" >
+        app_access_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="record.userName != null" >
+        #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastIp != null" >
+        #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitCount != null" >
+        #{record.visitCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastVisit != null" >
+        #{record.lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isApp != null" >
+        #{record.isApp,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDel != null" >
+        #{record.isDel,jdbcType=BIT},
+      </if>
+      <if test="record.ssoAccount != null" >
+        #{record.ssoAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appAccessToken != null" >
+        #{record.appAccessToken,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wisedu.cloud.smp.dal.sp.model.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastIp != null" >
+        last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitCount != null" >
+        visit_count = #{record.visitCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastVisit != null" >
+        last_visit = #{record.lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isApp != null" >
+        is_app = #{record.isApp,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+      <if test="record.ssoAccount != null" >
+        sso_account = #{record.ssoAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appAccessToken != null" >
+        app_access_token = #{record.appAccessToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set user_id = #{record.userId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      visit_count = #{record.visitCount,jdbcType=BIGINT},
+      last_visit = #{record.lastVisit,jdbcType=TIMESTAMP},
+      is_app = #{record.isApp,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_del = #{record.isDel,jdbcType=BIT},
+      sso_account = #{record.ssoAccount,jdbcType=VARCHAR},
+      app_access_token = #{record.appAccessToken,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wisedu.cloud.smp.dal.sp.model.User" >
+    update user
+    <set >
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastIp != null" >
+        last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitCount != null" >
+        visit_count = #{record.visitCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastVisit != null" >
+        last_visit = #{record.lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isApp != null" >
+        is_app = #{record.isApp,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+      <if test="record.ssoAccount != null" >
+        sso_account = #{record.ssoAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appAccessToken != null" >
+        app_access_token = #{record.appAccessToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{record.userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wisedu.cloud.smp.dal.sp.model.User" >
+    update user
+    set user_name = #{record.userName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      visit_count = #{record.visitCount,jdbcType=BIGINT},
+      last_visit = #{record.lastVisit,jdbcType=TIMESTAMP},
+      is_app = #{record.isApp,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_del = #{record.isDel,jdbcType=BIT},
+      sso_account = #{record.ssoAccount,jdbcType=VARCHAR},
+      app_access_token = #{record.appAccessToken,jdbcType=VARCHAR}
+    where user_id = #{record.userId,jdbcType=INTEGER}
+  </update>
+</mapper>

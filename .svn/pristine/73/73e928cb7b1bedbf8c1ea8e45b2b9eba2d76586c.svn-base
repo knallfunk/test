@@ -1,0 +1,37 @@
+package com.wisedu.cloud.smp.dal.sp.dao.impl;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.dao.ProxyServiceDao;
+import com.wisedu.cloud.smp.dal.sp.mapper.ProxyServiceMapper;
+import com.wisedu.cloud.smp.dal.sp.model.ProxyService;
+import com.wisedu.cloud.smp.dal.sp.model.ProxyServiceExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/8.
+ */
+@Repository("proxyServiceDao")
+public class ProxyServiceDaoImpl implements ProxyServiceDao{
+    @Autowired
+    private ProxyServiceMapper proxyServiceMapper;
+    @Override
+    public List<ProxyService> getProxyServiceByExample(ProxyServiceExample example) throws DaoException {
+        try {
+            return proxyServiceMapper.selectByExample(example);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+
+    @Override
+    public int countProxyServiceByExample(ProxyServiceExample example) throws DaoException {
+        try {
+            return proxyServiceMapper.countByExample(example);
+        } catch (Exception e) {
+            throw new DaoException("",e);
+        }
+    }
+}

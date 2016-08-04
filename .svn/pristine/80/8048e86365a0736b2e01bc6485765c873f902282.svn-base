@@ -1,0 +1,16 @@
+
+redis.common.host=114.215.238.204
+redis.common.port=6379
+redis.common.password=
+
+redis.common.connect.timeout=60000
+
+redis.common.default.db= 2
+redis.common.maxActive=300
+redis.common.maxIdle=100
+redis.common.maxWait=1000
+redis.common.testOnBorrow=true
+
+store.encode=UTF-8
+
+

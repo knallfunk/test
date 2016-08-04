@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.sal.apiapply.api;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.common.exception.SalBusinessException;
+
+import javax.xml.bind.annotation.XmlElement;
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/22.
+ */
+public interface ServiceAPIProxy {
+
+    void setSchoolAccessToken(String accessToken,String appId,String appName,String schoolId,List<String> serviceIds ) throws Exception;
+}

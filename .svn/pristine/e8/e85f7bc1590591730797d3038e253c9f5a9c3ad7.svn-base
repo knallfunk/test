@@ -1,0 +1,20 @@
+package com.wisedu.cloud.smp.biz.service.api;
+
+import com.wisedu.cloud.smp.common.exception.ServiceException;
+import com.wisedu.cloud.smp.dal.sp.model.ServiceCategory;
+import com.wisedu.cloud.smp.dal.sp.model.extend.ServiceInfo;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/7.
+ */
+public interface ApiShowService {
+    List<ServiceCategory> getAllCategories() throws ServiceException;
+
+    List<ServiceCategory> searchCategories(String categoryName) throws ServiceException;
+
+    List<ServiceInfo> getServiceInfoByCategoryId(Integer categoryId) throws ServiceException;
+
+    List<ServiceInfo> searchServiceInfo(String serviceName) throws ServiceException;
+}

@@ -1,0 +1,19 @@
+package com.wisedu.cloud.smp.dal.spc.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolAppService;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolAppServiceExample;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/7.
+ */
+public interface SchoolAppServiceDao {
+
+    void batchInsertSchoolAppService(List<SchoolAppService> schoolAppServices) throws DaoException;
+
+    void delSchooAppServicephysical(SchoolAppServiceExample example) throws DaoException;
+
+    void delSchoolAppService(SchoolAppServiceExample example) throws DaoException;
+}

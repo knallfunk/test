@@ -1,0 +1,36 @@
+package com.wisedu.cloud.smp.sal.common;
+
+import com.wisedu.cloud.smp.common.util.AddSoapHeader;
+import org.apache.cxf.interceptor.Interceptor;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.message.Message;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author huangxuecan
+ * @time 2015年7月19日 下午7:46:31
+ * 
+ */
+public class ServiceInvokeUtil {
+	private static String TIMESTAMP = "timestamp";
+	private static String SIGN = "sign";
+
+	public static JaxWsProxyFactoryBean setTokenInfo(
+			JaxWsProxyFactoryBean jaxWsProxyFactoryBean, String url,
+			String timestamp, String sign) {
+		jaxWsProxyFactoryBean.setAddress(url);
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put(TIMESTAMP, timestamp);
+		header.put(SIGN, sign);
+		AddSoapHeader addSoapHeader = new AddSoapHeader(header);
+		List<Interceptor<? extends Message>> list = new ArrayList<Interceptor<? extends Message>>();
+		list.add(addSoapHeader);
+		jaxWsProxyFactoryBean.setOutInterceptors(list);
+		return jaxWsProxyFactoryBean;
+	}
+
+}

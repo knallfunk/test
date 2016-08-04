@@ -1,0 +1,57 @@
+package com.wisedu.cloud.smp.biz.model.api;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/16.
+ */
+public class ApplyServicesBo {
+
+    private List<String> serviceIds;
+    private String appId;
+    private String appName;
+    private String operatorId;
+
+    public ApplyServicesBo() {
+        super();
+    }
+
+    public ApplyServicesBo(List<String> serviceIds, String appId, String appName, String operatorId) {
+        this.serviceIds = serviceIds;
+        this.appId = appId;
+        this.appName = appName;
+        this.operatorId = operatorId;
+    }
+
+    public List<String> getServiceIds() {
+        return serviceIds;
+    }
+
+    public void setServiceIds(List<String> serviceIds) {
+        this.serviceIds = serviceIds;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getOperatorId() {
+        return operatorId;
+    }
+
+    public void setOperatorId(String operatorId) {
+        this.operatorId = operatorId;
+    }
+}

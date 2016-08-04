@@ -1,0 +1,43 @@
+package com.wisedu.cloud.smp.dal.sp.model.extend;
+
+/**
+ * Created by huangxuecan on 2016/3/8.
+ */
+public class ApplyStatus {
+    private String appId;
+    private Integer auditStatus;//1 未审核 2 审核通过 3 审核失败
+    private String failReason;
+    private String accessToken;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public Integer getAuditStatus() {
+        return auditStatus;
+    }
+
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public String getFailReason() {
+        return failReason;
+    }
+
+    public void setFailReason(String failReason) {
+        this.failReason = failReason;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+}

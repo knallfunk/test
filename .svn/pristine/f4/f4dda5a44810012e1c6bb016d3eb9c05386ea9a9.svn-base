@@ -1,0 +1,70 @@
+package com.wisedu.cloud.smp.dal.sp.model.extend;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+public class ServiceInfo {
+    private Integer id;
+    private String serviceId;
+    private String serviceName;
+    private String accessUrl;
+    private String categoryId;
+    private String categoryName;
+    private Integer apiType;//１:soap;２:restful
+
+    public String getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getAccessUrl() {
+        return accessUrl;
+    }
+
+    public void setAccessUrl(String accessUrl) {
+        this.accessUrl = accessUrl;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Integer getApiType() {
+        return apiType;
+    }
+
+    public void setApiType(Integer apiType) {
+        this.apiType = apiType;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+}

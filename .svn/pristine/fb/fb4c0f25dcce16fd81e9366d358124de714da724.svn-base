@@ -1,0 +1,17 @@
+package com.wisedu.cloud.smp.dal.sp.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.model.User;
+import com.wisedu.cloud.smp.dal.sp.model.UserRole;
+
+/**
+ * Created by huangxuecan on 2016/3/4.
+ */
+public interface UserRoleDao {
+    void insertUser(User user) throws DaoException;
+
+    void insertUserRole(UserRole userRole) throws DaoException;
+
+    User getUserByUserName(String userName) throws DaoException;
+
+}

@@ -1,0 +1,16 @@
+package com.wisedu.cloud.smp.web.constant;
+
+/**
+ * Created by huangxuecan on 2016/1/12.
+ */
+public enum RetStatus {
+    PARAM_ERROR(400),SYSTEM_ERROR(500),SUCESS(200);
+
+    private int value ;
+    RetStatus(int value){
+        this.value = value;
+    }
+    public int getValue(){
+        return this.value;
+    }
+}

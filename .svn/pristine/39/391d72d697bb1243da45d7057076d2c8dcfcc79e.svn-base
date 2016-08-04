@@ -1,0 +1,16 @@
+package com.wisedu.cloud.smp.dal.sp.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.sp.model.ProxyService;
+import com.wisedu.cloud.smp.dal.sp.model.ProxyServiceExample;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/3/8.
+ */
+public interface ProxyServiceDao {
+    List<ProxyService> getProxyServiceByExample(ProxyServiceExample example) throws DaoException;
+
+    int countProxyServiceByExample(ProxyServiceExample example) throws  DaoException;
+}

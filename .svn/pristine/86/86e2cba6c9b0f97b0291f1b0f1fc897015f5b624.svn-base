@@ -1,0 +1,30 @@
+package com.wisedu.cloud.smp.dal.sp.mapper;
+
+import com.wisedu.cloud.smp.dal.sp.model.User;
+import com.wisedu.cloud.smp.dal.sp.model.UserExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface UserMapper {
+    int countByExample(@Param("example") UserExample example);
+
+    int deleteByExample(@Param("example") UserExample example);
+
+    int deleteByPrimaryKey(@Param("userId") Integer userId);
+
+    int insert(@Param("record") User record);
+
+    int insertSelective(@Param("record") User record);
+
+    List<User> selectByExample(@Param("example") UserExample example);
+
+    User selectByPrimaryKey(@Param("userId") Integer userId);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(@Param("record") User record);
+
+    int updateByPrimaryKey(@Param("record") User record);
+}

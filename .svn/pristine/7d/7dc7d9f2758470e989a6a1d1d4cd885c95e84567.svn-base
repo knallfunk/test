@@ -1,0 +1,15 @@
+package com.wisedu.cloud.smp.common.exception;
+
+@SuppressWarnings("serial")
+public class SaoException extends Exception {
+
+	public SaoException(String string) {
+		super(string);
+	}
+
+	public SaoException(String msg, Throwable cause) {
+
+		super(msg, cause);
+
+	}
+}

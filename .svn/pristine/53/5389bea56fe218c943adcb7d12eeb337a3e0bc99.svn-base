@@ -1,0 +1,91 @@
+package com.wisedu.cloud.smp.web.common;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class WebContext implements Map<String, Object> {
+
+    public static final String APP_ID = "APP_ID";
+    public static final String SERVICE_ID = "SERVICE_ID";
+    public static final String ACCESS_TOKEN = "accessToken";
+
+
+    private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<Map<String, Object>>() {
+        @Override
+        protected HashMap<String, Object> initialValue() {
+            return new HashMap<String, Object>();
+        }
+    };
+
+    private static WebContext instance = new WebContext();
+
+    private WebContext() {
+    }
+
+    public static WebContext getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void clear() {
+        context.remove();
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return context.get().containsKey(key);
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return context.get().containsValue(value);
+    }
+
+    @Override
+    public Set<Entry<String, Object>> entrySet() {
+        return context.get().entrySet();
+    }
+
+    @Override
+    public Object get(Object key) {
+        return context.get().get(key);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return context.get().isEmpty();
+    }
+
+    @Override
+    public Set<String> keySet() {
+        return context.get().keySet();
+    }
+
+    @Override
+    public Object put(String key, Object value) {
+        return context.get().put(key, value);
+    }
+
+    @Override
+    public void putAll(Map<? extends String, ? extends Object> arg0) {
+        context.get().putAll(arg0);
+    }
+
+    @Override
+    public Object remove(Object arg0) {
+        return context.get().remove(arg0);
+    }
+
+    @Override
+    public int size() {
+        return context.get().size();
+    }
+
+    @Override
+    public Collection<Object> values() {
+        return context.get().values();
+    }
+
+}

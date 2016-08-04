@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wisedu.cloud.smp.dal.sp.mapper.ProxyApplyExtMapper" >
+  <insert id="batchInsertProxyApply" parameterType="java.util.List">
+    insert into proxy_apply (applicant ,proxy_service_id,app_identifier,audit_code,is_del,create_time,update_time,is_app_token)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.applicant}, #{item.proxyServiceId},#{item.appIdentifier},#{item.auditCode},#{item.isDel},#{item.createTime},#{item.updateTime},#{item.isAppToken})
+
+    </foreach>
+  </insert>
+</mapper>

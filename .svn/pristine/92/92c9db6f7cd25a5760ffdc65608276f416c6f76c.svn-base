@@ -1,0 +1,125 @@
+package com.wisedu.cloud.smp.dal.sp.model;
+
+import java.util.Date;
+
+public class ProxyApply {
+    private Integer id;
+
+    private String auditCode;
+
+    private String auditComment;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    private Boolean isDel;
+
+    private Integer applicant;
+
+    private Integer operator;
+
+    private Integer proxyServiceId;
+
+    private String accessToken;
+
+    private String appIdentifier;
+
+    private Boolean isAppToken;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAuditCode() {
+        return auditCode;
+    }
+
+    public void setAuditCode(String auditCode) {
+        this.auditCode = auditCode == null ? null : auditCode.trim();
+    }
+
+    public String getAuditComment() {
+        return auditComment;
+    }
+
+    public void setAuditComment(String auditComment) {
+        this.auditComment = auditComment == null ? null : auditComment.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Boolean getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(Boolean isDel) {
+        this.isDel = isDel;
+    }
+
+    public Integer getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Integer applicant) {
+        this.applicant = applicant;
+    }
+
+    public Integer getOperator() {
+        return operator;
+    }
+
+    public void setOperator(Integer operator) {
+        this.operator = operator;
+    }
+
+    public Integer getProxyServiceId() {
+        return proxyServiceId;
+    }
+
+    public void setProxyServiceId(Integer proxyServiceId) {
+        this.proxyServiceId = proxyServiceId;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken == null ? null : accessToken.trim();
+    }
+
+    public String getAppIdentifier() {
+        return appIdentifier;
+    }
+
+    public void setAppIdentifier(String appIdentifier) {
+        this.appIdentifier = appIdentifier == null ? null : appIdentifier.trim();
+    }
+
+    public Boolean getIsAppToken() {
+        return isAppToken;
+    }
+
+    public void setIsAppToken(Boolean isAppToken) {
+        this.isAppToken = isAppToken;
+    }
+}

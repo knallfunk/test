@@ -1,0 +1,24 @@
+package com.wisedu.cloud.smp.dal.spc.dao;
+
+import com.wisedu.cloud.smp.common.exception.DaoException;
+import com.wisedu.cloud.smp.dal.spc.model.School;
+import com.wisedu.cloud.smp.dal.spc.model.SchoolExample;
+import com.wisedu.cloud.smp.dal.spc.model.extend.Page;
+import com.wisedu.cloud.smp.dal.spc.model.extend.SchoolWithLicense;
+
+import java.util.List;
+
+/**
+ * Created by huangxuecan on 2016/4/8.
+ */
+public interface SchoolDao {
+
+    School getSchoolById(String schoolId) throws DaoException;
+
+    void insertSchool(School school) throws DaoException;
+
+    List<SchoolWithLicense> getSchools(String condition,Page page) throws DaoException;
+
+    int getSchoolNum(SchoolExample schoolExample) throws DaoException;
+
+}

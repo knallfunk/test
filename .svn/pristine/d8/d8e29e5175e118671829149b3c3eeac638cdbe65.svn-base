@@ -1,2 +1,0 @@
-serviceAPI.url=/smp-webservice-api/serviceAPI/setSchoolAccessToken?wsdl
-auth.url=http://smp.campusphere.cn/user/auth/identify

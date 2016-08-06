@@ -1,1 +1,0 @@
-wsdl2java -p com.wisedu.cloud.smp.sal.apiapply -d C:\smp-cloud\smp-cloud-sal\src\main\java -client -encoding utf8 http://localhost:8081/webservice-api/serviceAPI/setSchoolAccessToken?wsdl

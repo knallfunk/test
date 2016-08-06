@@ -1,2 +1,0 @@
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://apiapply.api.platform.service.wisedu.com/")
-package com.wisedu.cloud.smp.sal.apiapply;

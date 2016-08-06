@@ -1,3 +1,0 @@
-serviceAPI.url=/smp-webservice-api/serviceAPI/setSchoolAccessToken?wsdl
-auth.url=http://localhost:8081/user/auth/identify
-

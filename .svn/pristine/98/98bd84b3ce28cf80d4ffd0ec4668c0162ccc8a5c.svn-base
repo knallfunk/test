@@ -1,3 +1,0 @@
-applyservice.queue.name=testing.smp.cloud.applyservice
-setschooltoken.queue.name=testing.smp.cloud.setschooltoken
-exchange.name=testing.smp.cloud.source
